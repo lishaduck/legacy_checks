@@ -1,0 +1,8 @@
+name: "legacy_checks"
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: "3.24.0"
+
+dev_dependencies:
+  melos: ^6.1.0

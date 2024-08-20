@@ -1,0 +1,28 @@
+name: flutter_checks
+description: "Support legacy matchers in `package:checks` expectations."
+version: 0.0.0
+homepage: https://lishaduck.github.io
+documentation: https://github.com/lishaduck/legacy_checks
+issue_tracker: https://github.com/lishaduck/legacy_checks/issues
+repository: https://github.com/lishaduck/legacy_checks.git
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  checks: ^0.3.0
+  flutter_test:
+    sdk: flutter
+  legacy_checks: ^0.0.0
+  matcher: ^0.12.16+1
+
+dev_dependencies:
+  analysis_options: ^0.0.0
+  custom_lint: ^0.6.5
+  very_good_cli: ^0.22.2
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:

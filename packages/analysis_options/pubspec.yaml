@@ -1,0 +1,18 @@
+name: analysis_options
+description: "Analyzer configuration for the Our Democracy team."
+version: 0.0.1
+homepage: https://lishaduck.github.io
+documentation: https://github.com/lishaduck/legacy_checks
+issue_tracker: https://github.com/lishaduck/legacy_checks/issues
+repository: https://github.com/lishaduck/legacy_checks.git
+
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  very_good_analysis: ^6.0.0
+
+dev_dependencies:
+  custom_lint: ^0.6.5
