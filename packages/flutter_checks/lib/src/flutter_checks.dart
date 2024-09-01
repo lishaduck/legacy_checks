@@ -24,7 +24,7 @@ import 'package:legacy_checks/legacy_checks.dart';
 /// Enable accessibility checks.
 ///
 /// Under the hood, this extension uses the [LegacyMatcher] extension to support legacy matchers.
-extension AccessibilityExpect on Subject<WidgetTester> {
+extension AccessibilityChecks on Subject<WidgetTester> {
   /// Asserts that the currently rendered widget meets the provided accessibility
   /// `guideline`.
   ///
@@ -53,10 +53,10 @@ extension AccessibilityExpect on Subject<WidgetTester> {
   }
 }
 
-/// Enable [Finder][FinderBase] checks.
+/// Enable [FinderBase] checks.
 ///
 /// Under the hood, this extension uses the [LegacyMatcher] extension to support legacy matchers.
-extension FinderExpect<T> on Subject<FinderBase<T>> {
+extension FinderBaseChecks<T> on Subject<FinderBase<T>> {
   /// Asserts that the [FinderBase] matches nothing in the available candidates.
   ///
   /// ## Sample code
