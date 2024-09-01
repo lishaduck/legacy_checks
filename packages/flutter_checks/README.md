@@ -36,7 +36,7 @@ as `package:checks` is better tested, at least, and the cost of migration is abo
 ## Usage
 
 ```dart
-check(42).legacyMatcher(matcher.equals(42));
+check(find.text('Save')).findsOne();
 ```
 
 ## Additional information
