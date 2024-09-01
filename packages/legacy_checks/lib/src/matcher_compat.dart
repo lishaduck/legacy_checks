@@ -55,7 +55,7 @@ extension LegacyMatcher<T> on Subject<T> {
   /// and depends on `test_api` internals which the Dart team doesn't wish to expose given that `package:checks` doesn't need them.
   /// For more information, see [dart-lang/matcher#199 (comment)](https://github.com/dart-lang/matcher/issues/199#issuecomment-1432422108).
   /// You have been warned, only use this method at your own risk.
-  /// Unfortunately, most matchers that need [LegacyMatcher] are asynchronous, so you may need to use this method.
+  /// Unfortunately, many matchers that need [LegacyMatcher] are asynchronous, so you may need to use this method.
   ///
   /// See also:
   ///
