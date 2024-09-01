@@ -1,7 +1,6 @@
 /// Implement [expect] and [expectLater] from `package:matcher` in `package:checks`.
 library;
 
-import 'package:checks/checks.dart';
 import 'package:checks/context.dart';
 import 'package:matcher/expect.dart'
     // Only used in the docs.
@@ -65,24 +64,27 @@ extension LegacyMatcher<T> on Subject<T> {
     await context.expectAsync(() => [], (actual) async {
       final Object? match = await matcher.matchAsync(actual);
 
-      check(
-        because: 'matchAsync() may only return a String, a Future, or null.',
-        match,
-      ).anyOf([
-        (it) => it.isNull(),
-        (it) => it.isA<Future<String?>>(),
-        (it) => it.isA<String>(),
-      ]);
-
       switch (match) {
         case String _:
+          // This is a synchronous rejection from an asynchronous matcher.
+          // Icky, but `package:matcher` supports it, so we must as well.
           return Rejection(which: [match]);
         case Future<String?> _:
+          // This is the result of an asynchronous matcher.
           final realResult = await match;
+          // If the result is `null`, the matcher is considered to have passed.
           if (realResult == null) return null;
+          // Otherwise, the matcher is considered to have failed.
           return Rejection(which: [realResult]);
-        default:
+        case null:
+          // This is a synchronous success from an asynchronous matcher.
+          // It's also icky, but `package:matcher` supports it as well.
           return null;
+        default:
+          // This should never happen.
+          throw AssertionError(
+            'matchAsync() may only return a String, a Future, or null.',
+          );
       }
     });
   }
