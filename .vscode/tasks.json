@@ -13,8 +13,7 @@
       "icon": {
         "color": "terminal.ansiCyan",
         "id": "gear"
-      },
-      "dependsOn": ["Flutter: gen-l10n"]
+      }
     },
     {
       "type": "melos",
@@ -31,8 +30,7 @@
       "icon": {
         "color": "terminal.ansiCyan",
         "id": "gear"
-      },
-      "dependsOn": ["Flutter: gen-l10n"]
+      }
     },
     {
       "type": "dart",
@@ -62,17 +60,6 @@
       },
       "options": {
         "cwd": "${workspaceFolder}/packages/app"
-      }
-    },
-    {
-      "type": "melos",
-      "script": "gen-l10n",
-      "group": "build",
-      "label": "Flutter: gen-l10n",
-      "detail": "Generate the localization files.",
-      "icon": {
-        "color": "terminal.ansiYellow",
-        "id": "comment-discussion"
       }
     },
     {
