@@ -10,7 +10,7 @@ Add support for legacy matchers from `package:matcher` to `package:checks` expec
 
 You probably don't want this package if you're getting started on a new project;
 rather, use `package:checks` directly.
-If you're using Flutter, install `flutter_checks` instead, via `flutter pub add flutter_checks`.
+If you're using Flutter, install `package:flutter_checks` instead, via `flutter pub add flutter_checks`.
 It provides a much safer, more convenient API surface out-of-the-box.
 
 If you have an existing pure-Dart project with tests using `package:matcher` (exposed by `package:test`),
