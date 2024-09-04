@@ -1,5 +1,5 @@
 name: "legacy_checks"
-repository: "https://github.com/lishaduck/legacy_checks.git"
+repository: "https://github.com/lishaduck/legacy_checks"
 
 packages:
   - packages/**
