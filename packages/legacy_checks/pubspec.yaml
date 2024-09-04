@@ -1,6 +1,6 @@
 name: legacy_checks
 description: "Support legacy matchers in `package:checks` expectations."
-version: 0.0.1
+version: 0.1.0
 homepage: https://github.com/lishaduck/legacy_checks
 documentation: https://github.com/lishaduck/legacy_checks
 issue_tracker: https://github.com/lishaduck/legacy_checks/issues
