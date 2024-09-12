@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.1.1 - 2024-09-12
+
+- **FIX**: add doesNotMeetGuideline. ([d192d59f](https://github.com/lishaduck/legacy_checks/commit/d192d59f0aa8bc785dba0ced69822156caefdd95))
+
 ## 0.1.0 - 2024-09-04
 
 > Note: This release has breaking changes.

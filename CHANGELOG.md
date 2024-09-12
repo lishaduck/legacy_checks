@@ -6,6 +6,26 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2024-09-12
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+- There are no breaking changes in this release.
+
+Packages with other changes:
+
+- [`flutter_checks` - `v0.1.1`](#flutter_checks---v011)
+
+---
+
+#### `flutter_checks` - `v0.1.1`
+
+- **FIX**: add doesNotMeetGuideline. ([d192d59f](https://github.com/lishaduck/legacy_checks/commit/d192d59f0aa8bc785dba0ced69822156caefdd95))
+
 ## 2024-09-04
 
 ### Changes

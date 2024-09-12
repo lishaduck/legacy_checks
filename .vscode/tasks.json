@@ -2,37 +2,6 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "melos",
-      "script": "gen",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "label": "Dart: run build_runner build",
-      "detail": "Run a build_runner build.",
-      "icon": {
-        "color": "terminal.ansiCyan",
-        "id": "gear"
-      }
-    },
-    {
-      "type": "melos",
-      "script": "gen:watch",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "label": "Dart: watch build_runner",
-      "detail": "Continuously run a build_runner build.",
-      "runOptions": {
-        "runOn": "folderOpen"
-      },
-      "icon": {
-        "color": "terminal.ansiCyan",
-        "id": "gear"
-      }
-    },
-    {
       "type": "dart",
       "command": "dart",
       "cwd": ".",
@@ -44,22 +13,6 @@
       "icon": {
         "color": "terminal.ansiGreen",
         "id": "book"
-      }
-    },
-    {
-      "type": "flutter",
-      "command": "flutter",
-      "args": ["build", "${input:target}", "--release"],
-      "problemMatcher": [],
-      "group": "build",
-      "label": "Flutter: build",
-      "detail": "Build a flutter app.",
-      "icon": {
-        "color": "terminal.ansiBlue",
-        "id": "gear"
-      },
-      "options": {
-        "cwd": "${workspaceFolder}/packages/app"
       }
     },
     {
