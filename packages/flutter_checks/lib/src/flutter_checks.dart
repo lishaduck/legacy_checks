@@ -35,6 +35,7 @@ import 'package:flutter_test/flutter_test.dart' as flutter_matcher
         clipsWithBoundingRect,
         containsSemantics,
         coversSameAreaAs,
+        doesNotMeetGuideline,
         equalsIgnoringHashCodes,
         findsAny,
         findsAtLeast,
@@ -113,6 +114,15 @@ extension AccessibilityChecks on Subject<flutter_test.WidgetTester> {
     flutter_test.AccessibilityGuideline guideline,
   ) async {
     await legacyMatcherAsync(flutter_matcher.meetsGuideline(guideline));
+  }
+
+  /// The inverse check of [meetsGuideline].
+  ///
+  /// This is needed because [not] does not compose with asynchronous expections.
+  Future<void> doesNotMeetGuideline(
+    flutter_test.AccessibilityGuideline guideline,
+  ) async {
+    await legacyMatcherAsync(flutter_matcher.doesNotMeetGuideline(guideline));
   }
 }
 
