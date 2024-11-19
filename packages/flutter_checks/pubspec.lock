@@ -17,10 +17,11 @@ packages:
   analysis_options:
     dependency: "direct dev"
     description:
-      path: "../analysis_options"
-      relative: true
-    source: path
-    version: "0.0.1"
+      name: analysis_options
+      sha256: "83e0028a0de696ac518e70d55368df62929dc008b87b10ba2d95714f1511ef5a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   analyzer:
     dependency: transitive
     description:
@@ -169,18 +170,26 @@ packages:
     dependency: "direct dev"
     description:
       name: custom_lint
-      sha256: "4939d89e580c36215e48a7de8fd92f22c79dcc3eb11fda84f3402b3b45aec663"
+      sha256: "3486c470bb93313a9417f926c7dd694a2e349220992d7b9d14534dc49c15bba9"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.5"
+    version: "0.7.0"
   custom_lint_core:
     dependency: transitive
     description:
       name: custom_lint_core
-      sha256: "4ddbbdaa774265de44c97054dcec058a83d9081d071785ece601e348c18c267d"
+      sha256: "02450c3e45e2a6e8b26c4d16687596ab3c4644dd5792e3313aa9ceba5a49b7f5"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.5"
+    version: "0.7.0"
+  custom_lint_visitor:
+    dependency: transitive
+    description:
+      name: custom_lint_visitor
+      sha256: "8aeb3b6ae2bb765e7716b93d1d10e8356d04e0ff6d7592de6ee04e0dd7d6587d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+6.7.0"
   dart_style:
     dependency: transitive
     description:
@@ -354,9 +363,10 @@ packages:
   legacy_checks:
     dependency: "direct main"
     description:
-      path: "../legacy_checks"
-      relative: true
-    source: path
+      name: legacy_checks
+      sha256: b22e5b1ff55a14e8bd91acafbabff909e14829b73ca492dcdaf0fbbb70476079
+      url: "https://pub.dev"
+    source: hosted
     version: "0.1.0"
   lints:
     dependency: transitive
@@ -703,10 +713,10 @@ packages:
     dependency: transitive
     description:
       name: uuid
-      sha256: "83d37c7ad7aaf9aa8e275490669535c8080377cfa7a7004c24dfac53afffaa90"
+      sha256: a5be9ef6618a7ac1e964353ef476418026db906c4facdedaa299b7a2e71690ff
       url: "https://pub.dev"
     source: hosted
-    version: "4.4.2"
+    version: "4.5.1"
   vector_math:
     dependency: "direct main"
     description:
@@ -715,14 +725,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
-  very_good_analysis:
-    dependency: transitive
-    description:
-      name: very_good_analysis
-      sha256: "1fb637c0022034b1f19ea2acb42a3603cbd8314a470646a59a2fb01f5f3a8629"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.0"
   very_good_cli:
     dependency: "direct dev"
     description:
