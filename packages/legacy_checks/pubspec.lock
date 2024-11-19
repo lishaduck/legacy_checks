@@ -17,10 +17,11 @@ packages:
   analysis_options:
     dependency: "direct dev"
     description:
-      path: "../analysis_options"
-      relative: true
-    source: path
-    version: "0.0.1"
+      name: analysis_options
+      sha256: "83e0028a0de696ac518e70d55368df62929dc008b87b10ba2d95714f1511ef5a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   analyzer:
     dependency: transitive
     description:
@@ -49,10 +50,10 @@ packages:
     dependency: transitive
     description:
       name: args
-      sha256: "7cf60b9f0cc88203c5a190b4cd62a99feea42759a7fa695010eb5de1c0b2252a"
+      sha256: bf9f5caeea8d8fe6721a9c358dd8a5c1947b27f1cfaa18b39c301273594919e6
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.0"
+    version: "2.6.0"
   async:
     dependency: transitive
     description:
@@ -97,10 +98,10 @@ packages:
     dependency: transitive
     description:
       name: cli_completion
-      sha256: "158deec74a75cdc69bce061645fea08f94190dd6833f988f517c2dfcb45e9117"
+      sha256: "72e8ccc4545f24efa7bbdf3bff7257dc9d62b072dee77513cc54295575bc9220"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.0"
+    version: "0.5.1"
   cli_util:
     dependency: transitive
     description:
@@ -329,18 +330,18 @@ packages:
     dependency: transitive
     description:
       name: mason
-      sha256: "2508bb0bf51028fe6a433d694bd4d586d1ad99abb7699ee24d7ed3bfda0ea39e"
+      sha256: "1871650cbb3e7df28eb31d7a1682466f7a368cb676a5e335d1898cf3efbfad47"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0-dev.57"
+    version: "0.1.0-dev.60"
   mason_logger:
     dependency: transitive
     description:
       name: mason_logger
-      sha256: "1fdf5c76870eb6fc3611ed6fbae1973a3794abe581ea5e22e68af2f73c688b93"
+      sha256: b6d6d159927a4165f197ffc5993ea680dd41c59daf35bff23bae28390c09a36e
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.16"
+    version: "0.3.1"
   matcher:
     dependency: "direct main"
     description:
@@ -393,10 +394,10 @@ packages:
     dependency: transitive
     description:
       name: pana
-      sha256: "5c29b8087b1ee29ab430393803e084a9e1d851b18c3bd276a76faf3b2171b8c0"
+      sha256: "1e8eda3ef25479e192cd648cd574a1bc0cc096c70c0468e67530462e92fb79b7"
       url: "https://pub.dev"
     source: hosted
-    version: "0.22.9"
+    version: "0.22.13"
   path:
     dependency: transitive
     description:
@@ -441,10 +442,10 @@ packages:
     dependency: transitive
     description:
       name: pub_updater
-      sha256: "54e8dc865349059ebe7f163d6acce7c89eb958b8047e6d6e80ce93b13d7c9e60"
+      sha256: "739a0161d73a6974c0675b864fb0cf5147305f7b077b7f03a58fa7a9ab3e7e7d"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.0"
+    version: "0.5.0"
   pubspec_parse:
     dependency: transitive
     description:
@@ -629,30 +630,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.4.2"
-  very_good_analysis:
-    dependency: transitive
-    description:
-      name: very_good_analysis
-      sha256: "1fb637c0022034b1f19ea2acb42a3603cbd8314a470646a59a2fb01f5f3a8629"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.0"
   very_good_cli:
     dependency: "direct dev"
     description:
       name: very_good_cli
-      sha256: f6904c3530018d9127406c5d83c939b36b027bf48913674169f6e7f56eb09223
+      sha256: "465e2fea4269ce1920736aca880c80f1c17b1186599b74cb4090fabf761a259e"
       url: "https://pub.dev"
     source: hosted
-    version: "0.22.2"
+    version: "0.24.0"
   very_good_test_runner:
     dependency: transitive
     description:
       name: very_good_test_runner
-      sha256: "3e1e3519f5a790abaafa94442edaae7a9af817f6241b8b787c01a465f3332059"
+      sha256: "8c5b75c8d233a112825ddbb6a146bde8a2d40ee2d46d57ee7832e4106ec501c3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "0.3.0"
   vm_service:
     dependency: transitive
     description:
