@@ -24,8 +24,8 @@ dependencies:
   vector_math: ^2.1.4
 
 dev_dependencies:
-  analysis_options: ^0.0.0
+  analysis_options: ">=0.0.0 <3.0.0"
   custom_lint: ^0.6.5
-  very_good_cli: ^0.22.2
+  very_good_cli: ">=0.22.2 <0.26.0"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
