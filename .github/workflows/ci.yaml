@@ -46,25 +46,8 @@ jobs:
           cache: true
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
-      - name: ⚙️ Cache generated files
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
-        with:
-          path: |
-            .dart_tool/
-            lib/gen/*.gen.dart
-            lib/src/features/**/*.g.dart
-            lib/src/features/**/*.freezed.dart
-            lib/src/utils/*.g.dart
-            lib/src/utils/*.freezed.dart
-            lib/src/app/*.gr.dart
-            lib/src/app/*.gm.dart
-            lib/src/l10n/app_localizations.dart
-            lib/src/l10n/app_localizations_*.dart
-          key: ${{ runner.os }}-${{ steps.flutter.outputs.CHANNEL }}-dart-${{ hashFiles('**/build.yaml') }}
       - name: 📦 Install dependencies
-        uses: bluefireteam/melos-action@b7f0b37c25d61616d8eda5d1b0fcf4b17e4e3b09 # v3
-        with:
-          run-bootstrap: true
+        run: dart pub get --enforce-lockfile
 
   lint:
     name: Linting
@@ -88,25 +71,12 @@ jobs:
           cache: true
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
-      - name: ⚙️ Cache generated files
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
-        with:
-          path: |
-            .dart_tool/
-            lib/gen/*.gen.dart
-            lib/src/features/**/*.g.dart
-            lib/src/features/**/*.freezed.dart
-            lib/src/utils/*.g.dart
-            lib/src/utils/*.freezed.dart
-            lib/src/app/*.gr.dart
-            lib/src/app/*.gm.dart
-            lib/src/l10n/app_localizations.dart
-            lib/src/l10n/app_localizations_*.dart
-          key: ${{ runner.os }}-${{ steps.flutter.outputs.CHANNEL }}-dart-${{ hashFiles('**/build.yaml') }}
-      - name: 📦 Install dependencies
+      - name: 🌋 Install Melos
         uses: bluefireteam/melos-action@b7f0b37c25d61616d8eda5d1b0fcf4b17e4e3b09 # v3
         with:
-          run-bootstrap: true
+          run-bootstrap: false
+      - name: 📦 Install dependencies
+        run: dart pub get --enforce-lockfile
       - name: 🕵️ Analyze project source
         run: melos analyze --fatal-infos
       - name: 🕵️ Run Custom Lint Rules
@@ -134,28 +104,12 @@ jobs:
           cache: true
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
-      - name: ⚙️ Cache generated files
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
-        with:
-          path: |
-            .dart_tool/
-            lib/gen/*.gen.dart
-            lib/src/features/**/*.g.dart
-            lib/src/features/**/*.freezed.dart
-            lib/src/utils/*.g.dart
-            lib/src/utils/*.freezed.dart
-            lib/src/app/*.gr.dart
-            lib/src/app/*.gm.dart
-            lib/src/l10n/app_localizations.dart
-            lib/src/l10n/app_localizations_*.dart
-          key: ${{ runner.os }}-${{ steps.flutter.outputs.CHANNEL }}-dart-${{ hashFiles('**/build.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ steps.flutter.outputs.CHANNEL }}-dart-
-            ${{ runner.os }}-
-      - name: 📦 Install dependencies
+      - name: 🌋 Install Melos
         uses: bluefireteam/melos-action@b7f0b37c25d61616d8eda5d1b0fcf4b17e4e3b09 # v3
         with:
-          run-bootstrap: true
+          run-bootstrap: false
+      - name: 📦 Install dependencies
+        run: dart pub get --enforce-lockfile
       - name: 🧪 Run tests
         run: melos run test
       - name: 📊 Upload code coverage
@@ -188,6 +142,10 @@ jobs:
           cache: true
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
+      - name: 🌋 Install Melos
+        uses: bluefireteam/melos-action@b7f0b37c25d61616d8eda5d1b0fcf4b17e4e3b09 # v3
+        with:
+          run-bootstrap: false
       - name: ✨ Verify formatting
         run: melos format --output=none --set-exit-if-changed
 
