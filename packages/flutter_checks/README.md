@@ -33,19 +33,21 @@ check(find.text('Save')).findsOne();
 
 - Most synchronous matchers don't have inverted versions.
   Use `.not((it) => it.legacyMatcher)` instead.
-  Like `package:matcher`, `checks` doesn't have
+  Like `package:matcher`, `package:checks` doesn't have
 - Deprecated matchers weren't included.
   This includes `findsOneWidget` & co., as one should use `findsOne` instead.
   If you find this unduly restrictive, please [file an issue][new-issue]!
 
 ## Additional information
 
-This package is maintained _solely_ for the use of [`@PHS-TSA`][phs-tsa], but is published so anyone can use it if they find it helpful.
+This package was originally written for the use of [`@PHS-TSA`][phs-tsa],
+but was published so anyone can use it if they find it helpful.
 We intend on strictly adhering to SemVer,
 but that doesn't mean that we'll shy away from ergonomics in the name of back-compat.
-Feel free to file issues, we appreciate it.
+Please, feel free to file issues, we appreciate it!
 We also accept PRs, but please read the contributing guidelines first
-(TL;DR: Don't send anything enormous our way without prior communtation, and follow to CoC).
+(if I've gotten around to writing them—
+TL;DR: Don't send anything enormous our way without prior communtation, and follow to CoC).
 
 [new-issue]: https://github.com/lishaduck/legacy_checks/issues/new
 [phs-tsa]: https://github.com/PHS-TSA
