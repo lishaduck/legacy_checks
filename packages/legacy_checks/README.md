@@ -32,9 +32,10 @@ check(42).legacyMatcher(matcher.equals(42));
 
 ## Additional information
 
-This package is maintained _solely_ for use in `flutter_checks`.
+This package is maintained _solely_ for use in `package:flutter_checks`.
 We intend on strictly adhering to SemVer,
 but that doesn't mean that we'll shy away from ergonomics in the name of back-compat.
-Feel free to file issues, we appreciate it.
+Please, feel free to file issues, we appreciate it!
 We also accept PRs, but please read the contributing guidelines first
-(TL;DR: Don't send anything enormous our way without prior communtation, and follow to CoC).
+(if I've gotten around to writing them—
+TL;DR: Don't send anything enormous our way without prior communtation, and follow to CoC).

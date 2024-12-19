@@ -1,5 +1,5 @@
 name: analysis_options
-description: "Analyzer configuration for the Our Democracy team."
+description: "Analyzer configuration for the legacy_checks monorepo."
 version: 0.0.1
 homepage: https://lishaduck.github.io
 documentation: https://github.com/lishaduck/legacy_checks
@@ -9,10 +9,11 @@ repository: https://github.com/lishaduck/legacy_checks.git
 publish_to: none
 
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.6.0
+resolution: workspace
 
 dependencies:
   very_good_analysis: ^6.0.0
 
 dev_dependencies:
-  custom_lint: ^0.6.8
+  custom_lint: ^0.7.0

@@ -10,22 +10,16 @@ command:
     fetchTags: false
 
     environment:
-      sdk: "^3.5.0"
+      sdk: "^3.6.0"
 
   version:
     changelogFormat:
       includeDate: true
     branch: main
     hooks:
-      preCommit: melos run get && git add packages/*/pubspec.lock
+      preCommit: dart pub get && git add packages/*/pubspec.lock
 
 scripts:
-  get:
-    description: get dependencies (no lockfile update, linking)
-    exec: dart pub get
-  upgrade:
-    description: upgrade dependencies
-    exec: dart pub upgrade
   custom_lint:
     description: run custom lint
     exec: dart run custom_lint --fatal-infos
