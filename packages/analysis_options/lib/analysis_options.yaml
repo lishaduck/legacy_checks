@@ -31,6 +31,8 @@ linter:
     always_use_package_imports: false
     lines_longer_than_80_chars: false
     one_member_abstracts: false
+    omit_obvious_local_variable_types: true
+    omit_local_variable_types: false
 
     # Extra rules, not in VGA
     avoid_classes_with_only_static_members: true
@@ -53,6 +55,10 @@ linter:
 
     # Experimental rules, not yet in VGA
     annotate_redeclares: true
+
+    # New/updated rules, not yet in VGA
+    use_truncating_division: true
+    avoid_futureor_void: true
 
     # Newly (or soon-to-be) deprecated rules, still in VGA
     unnecessary_await_in_return: false

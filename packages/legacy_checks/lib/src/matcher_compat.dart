@@ -71,7 +71,7 @@ extension LegacyMatcher<T> on Subject<T> {
           return Rejection(which: [match]);
         case Future<String?> _:
           // This is the result of an asynchronous matcher.
-          final realResult = await match;
+          final String? realResult = await match;
           // If the result is `null`, the matcher is considered to have passed.
           if (realResult == null) return null;
           // Otherwise, the matcher is considered to have failed.
