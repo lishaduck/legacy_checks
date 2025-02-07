@@ -26,7 +26,7 @@ dependencies:
 
 dev_dependencies:
   analysis_options: ^0.0.0
-  custom_lint: ^0.7.0
-  very_good_cli: ^0.23.1
+  custom_lint: ^0.7.2
+  very_good_cli: ^0.25.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
