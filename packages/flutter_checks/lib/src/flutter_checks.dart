@@ -123,7 +123,7 @@ extension AccessibilityChecks on Subject<flutter_test.WidgetTester> {
 
   /// The inverse check of [meetsGuideline].
   ///
-  /// This is needed because [not] does not compose with asynchronous expections.
+  /// This is needed because [not] does not compose with asynchronous expectations.
   Future<void> doesNotMeetGuideline(
     flutter_test.AccessibilityGuideline guideline,
   ) async {
