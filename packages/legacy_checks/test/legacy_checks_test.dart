@@ -10,7 +10,8 @@ void main() {
   });
 
   test('legacyMatcherAsync', () async {
-    await check(Future.value(42))
-        .legacyMatcherAsync(matcher.completion(42) as AsyncMatcher);
+    await check(
+      Future.value(42),
+    ).legacyMatcherAsync(matcher.completion(42) as AsyncMatcher);
   });
 }

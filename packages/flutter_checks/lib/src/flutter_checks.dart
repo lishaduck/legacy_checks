@@ -28,7 +28,8 @@ import 'package:flutter/semantics.dart'
     show AttributedString, CustomSemanticsAction, SemanticsNode;
 import 'package:flutter/services.dart' show MethodCall;
 import 'package:flutter/widgets.dart' show Offstage, RepaintBoundary;
-import 'package:flutter_test/flutter_test.dart' as flutter_matcher
+import 'package:flutter_test/flutter_test.dart'
+    as flutter_matcher
     show
         GoldenFileComparator,
         LocalFileComparator,
@@ -64,7 +65,8 @@ import 'package:flutter_test/flutter_test.dart' as flutter_matcher
         rendersOnPhysicalModel,
         rendersOnPhysicalShape,
         within;
-import 'package:flutter_test/flutter_test.dart' as flutter_test
+import 'package:flutter_test/flutter_test.dart'
+    as flutter_test
     show
         AccessibilityGuideline,
         CommonFinders,
@@ -521,10 +523,7 @@ extension FinderChecks on Subject<flutter_test.Finder> {
   /// See also:
   ///
   ///  - [flutter_matcher.rendersOnPhysicalShape], the backing matcher.
-  void rendersOnPhysicalShape({
-    required ShapeBorder shape,
-    double? elevation,
-  }) {
+  void rendersOnPhysicalShape({required ShapeBorder shape, double? elevation}) {
     legacyMatcher(
       flutter_matcher.rendersOnPhysicalShape(
         shape: shape,
@@ -570,10 +569,7 @@ extension ColorSwatchChecks<T> on Subject<ColorSwatch<T>> {
     double threshold = flutter_test.colorEpsilon,
   }) {
     legacyMatcher(
-      flutter_matcher.isSameColorSwatchAs(
-        color,
-        threshold: threshold,
-      ),
+      flutter_matcher.isSameColorSwatchAs(color, threshold: threshold),
     );
   }
 }

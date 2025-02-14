@@ -3,8 +3,8 @@ library;
 
 import 'package:checks/context.dart';
 import 'package:matcher/expect.dart'
-    // Only used in the docs.
-    show
+        // Only used in the docs.
+        show
         completion,
         expect,
         expectLater;

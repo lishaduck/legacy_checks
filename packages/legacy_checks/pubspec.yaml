@@ -7,7 +7,7 @@ issue_tracker: https://github.com/lishaduck/legacy_checks/issues
 repository: https://github.com/lishaduck/legacy_checks.git
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.7.0
 resolution: workspace
 
 topics:
