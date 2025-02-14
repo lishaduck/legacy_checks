@@ -38,3 +38,8 @@ melos:
       packageFilters:
         dependsOn:
           - very_good_cli
+    pana:
+      description: run pana
+      exec: dart run pana . --exit-code-threshold=130
+      packageFilters:
+        noPrivate: true
