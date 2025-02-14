@@ -10,6 +10,8 @@
 include: package:very_good_analysis/analysis_options.yaml
 
 analyzer:
+  errors:
+    unused_element_parameter: ignore
   exclude:
     - "test/.test_coverage.dart"
     - "build/**"
@@ -55,10 +57,14 @@ linter:
 
     # Experimental rules, not yet in VGA
     annotate_redeclares: true
+    unnecessary_async: true
+    unsafe_variance: true
 
     # New/updated rules, not yet in VGA
     use_truncating_division: true
     avoid_futureor_void: true
+    strict_top_level_inference: true
+    unnecessary_underscores: true
 
     # Newly (or soon-to-be) deprecated rules, still in VGA
     unnecessary_await_in_return: false

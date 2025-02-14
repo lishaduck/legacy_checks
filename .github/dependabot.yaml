@@ -24,5 +24,3 @@ updates:
       interval: "daily"
     assignees:
       - "lishaduck"
-    ignore:
-      - dependency-name: 'analysis_options'

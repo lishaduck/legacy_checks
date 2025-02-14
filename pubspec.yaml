@@ -8,7 +8,7 @@ environment:
   flutter: "3.29.0"
 
 workspace:
-  - packages/analysis_options
+  - packages/_analysis_options
   - packages/flutter_checks
   - packages/legacy_checks
 
@@ -32,12 +32,6 @@ melos:
         preCommit: dart pub get && git add packages/*/pubspec.lock
 
   scripts:
-    custom_lint:
-      description: run custom lint
-      exec: dart run custom_lint --fatal-infos
-      packageFilters:
-        dependsOn:
-          - custom_lint
     test:
       description: run tests
       exec: dart run very_good_cli:very_good test --coverage --test-randomize-ordering-seed random

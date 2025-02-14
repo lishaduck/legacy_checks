@@ -1,4 +1,4 @@
-name: analysis_options
+name: _analysis_options
 description: "Analyzer configuration for the legacy_checks monorepo."
 version: 0.0.1
 homepage: https://lishaduck.github.io
@@ -14,6 +14,3 @@ resolution: workspace
 
 dependencies:
   very_good_analysis: ^7.0.0
-
-dev_dependencies:
-  custom_lint: ^0.7.2
