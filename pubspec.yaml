@@ -1,8 +1,46 @@
-name: "legacy_checks"
+name: legacy_checks_workspace
+repository: https://github.com/lishaduck/legacy_checks
+
+publish_to: none
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-  flutter: "3.24.1"
+  sdk: ">=3.7.0 <4.0.0"
+  flutter: "3.29.0"
+
+workspace:
+  - packages/analysis_options
+  - packages/flutter_checks
+  - packages/legacy_checks
+
+dependency_overrides:
+  pana: 0.22.18
 
 dev_dependencies:
-  melos: ^6.1.0
+  melos: ^7.0.0-dev.7
+
+melos:
+  command:
+    bootstrap:
+      environment:
+        sdk: "^3.6.0"
+
+    version:
+      changelogFormat:
+        includeDate: true
+      branch: main
+      hooks:
+        preCommit: dart pub get && git add packages/*/pubspec.lock
+
+  scripts:
+    custom_lint:
+      description: run custom lint
+      exec: dart run custom_lint --fatal-infos
+      packageFilters:
+        dependsOn:
+          - custom_lint
+    test:
+      description: run tests
+      exec: dart run very_good_cli:very_good test --coverage --test-randomize-ordering-seed random
+      packageFilters:
+        dependsOn:
+          - very_good_cli

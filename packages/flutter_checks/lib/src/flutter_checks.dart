@@ -1,6 +1,6 @@
 /// Wrap the `flutter_test` package to provide a modern, type-safe API for testing Flutter widgets.
-// ignore_for_file: unintended_html_in_doc_comment
-
+///
+/// @docImport 'package:flutter_test/flutter_test.dart';
 library;
 
 import 'dart:ui' show Color, Image, Offset, Path, Rect, Size, TextDirection;
@@ -13,7 +13,8 @@ import 'package:flutter/foundation.dart'
         precisionErrorTolerance,
         shortHash;
 import 'package:flutter/material.dart' show Card;
-import 'package:flutter/painting.dart' show BorderRadius, BoxShape, ShapeBorder;
+import 'package:flutter/painting.dart'
+    show BorderRadius, BoxShape, ColorSwatch, ShapeBorder;
 import 'package:flutter/rendering.dart'
     show
         RenderClipOval,
@@ -27,7 +28,8 @@ import 'package:flutter/semantics.dart'
     show AttributedString, CustomSemanticsAction, SemanticsNode;
 import 'package:flutter/services.dart' show MethodCall;
 import 'package:flutter/widgets.dart' show Offstage, RepaintBoundary;
-import 'package:flutter_test/flutter_test.dart' as flutter_matcher
+import 'package:flutter_test/flutter_test.dart'
+    as flutter_matcher
     show
         GoldenFileComparator,
         LocalFileComparator,
@@ -51,6 +53,7 @@ import 'package:flutter_test/flutter_test.dart' as flutter_matcher
         isOffstage,
         isOnstage,
         isSameColorAs,
+        isSameColorSwatchAs,
         matchesReferenceImage,
         matchesSemantics,
         matrix3MoreOrLessEquals,
@@ -62,7 +65,8 @@ import 'package:flutter_test/flutter_test.dart' as flutter_matcher
         rendersOnPhysicalModel,
         rendersOnPhysicalShape,
         within;
-import 'package:flutter_test/flutter_test.dart' as flutter_test
+import 'package:flutter_test/flutter_test.dart'
+    as flutter_test
     show
         AccessibilityGuideline,
         CommonFinders,
@@ -72,6 +76,7 @@ import 'package:flutter_test/flutter_test.dart' as flutter_test
         SemanticsController,
         WidgetTester,
         androidTapTargetGuideline,
+        colorEpsilon,
         iOSTapTargetGuideline,
         labeledTapTargetGuideline,
         textContrastGuideline;
@@ -518,10 +523,7 @@ extension FinderChecks on Subject<flutter_test.Finder> {
   /// See also:
   ///
   ///  - [flutter_matcher.rendersOnPhysicalShape], the backing matcher.
-  void rendersOnPhysicalShape({
-    required ShapeBorder shape,
-    double? elevation,
-  }) {
+  void rendersOnPhysicalShape({required ShapeBorder shape, double? elevation}) {
     legacyMatcher(
       flutter_matcher.rendersOnPhysicalShape(
         shape: shape,
@@ -537,13 +539,38 @@ extension FinderChecks on Subject<flutter_test.Finder> {
 extension ColorChecks on Subject<Color> {
   /// Asserts that the object represents the same color as [color] when used to paint.
   ///
-  /// Specifically this matcher checks the object is of type [Color] and its [Color.value]
-  /// equals to that of the given [color].
+  /// Specifically this matcher checks the object is of type [Color] and its color
+  /// components fall below the delta specified by [threshold].
   ///
   /// See also:
   ///  - [flutter_matcher.isSameColorAs], the backing matcher.
-  void isSameColorAs(Color color) {
-    legacyMatcher(flutter_matcher.isSameColorAs(color));
+  void isSameColorAs(
+    Color color, {
+    double threshold = flutter_test.colorEpsilon,
+  }) {
+    legacyMatcher(flutter_matcher.isSameColorAs(color, threshold: threshold));
+  }
+}
+
+/// Enable [ColorSwatch] checks.
+///
+/// {@macro pub.flutter_checks.legacy_matcher_disclosure}
+extension ColorSwatchChecks<T> on Subject<ColorSwatch<T>> {
+  /// Asserts that the object represents the same color swatch as [color] when
+  /// used to paint.
+  ///
+  /// Specifically this matcher checks the object is of type [ColorSwatch] and its
+  /// color components fall below the delta specified by [threshold].
+  ///
+  /// Note: This doesn't recurse into the swatches [Color] type, instead treating
+  /// them as [Color]s.
+  void isSameColorSwatchAs(
+    ColorSwatch<T> color, {
+    double threshold = flutter_test.colorEpsilon,
+  }) {
+    legacyMatcher(
+      flutter_matcher.isSameColorSwatchAs(color, threshold: threshold),
+    );
   }
 }
 
@@ -1017,7 +1044,7 @@ extension SemanticsNodeChecks on Subject<SemanticsNode> {
   ///
   /// See also:
   ///
-  ///  - [flutter_test.SemanticsController.find] under [flutter_test.WidgetTester.semantics], the tester method which retrieves semantics.
+  ///  - [flutter_test.SemanticsController.find] under [WidgetTester.semantics], the tester method which retrieves semantics.
   ///  - [containsSemantics], a similar matcher without default values for flags or actions.
   ///  - [flutter_matcher.matchesSemantics], the backing matcher.
   void matchesSemantics({
@@ -1210,7 +1237,7 @@ extension SemanticsNodeChecks on Subject<SemanticsNode> {
   ///
   /// See also:
   ///
-  ///  - [flutter_test.SemanticsController.find] under [flutter_test.WidgetTester.semantics], the tester method which retrieves semantics.
+  ///  - [flutter_test.SemanticsController.find] under [WidgetTester.semantics], the tester method which retrieves semantics.
   ///  - [matchesSemantics], a similar matcher with default values for flags and actions.
   ///  - [flutter_matcher.containsSemantics], the backing matcher.
   void containsSemantics({
