@@ -17,6 +17,10 @@ on:
 env:
   CI: true
 
+defaults:
+  run:
+    shell: bash
+
 permissions:
   contents: read
 
@@ -45,6 +49,7 @@ jobs:
       - name: 📦 Install dependencies
         uses: bluefireteam/melos-action@b7f0b37c25d61616d8eda5d1b0fcf4b17e4e3b09 # v3
         with:
+          melos-version: 7.0.0-dev.7
           enforce-lockfile: true
       - name: 🕵️ Analyze project source
         run: dart analyze --fatal-infos
@@ -73,6 +78,7 @@ jobs:
       - name: 📦 Install dependencies
         uses: bluefireteam/melos-action@b7f0b37c25d61616d8eda5d1b0fcf4b17e4e3b09 # v3
         with:
+          melos-version: 7.0.0-dev.7
           enforce-lockfile: true
       - name: 🧪 Run tests
         run: melos run test
@@ -132,6 +138,7 @@ jobs:
       - name: 📦 Install dependencies
         uses: bluefireteam/melos-action@b7f0b37c25d61616d8eda5d1b0fcf4b17e4e3b09 # v3
         with:
+          melos-version: 7.0.0-dev.7
           enforce-lockfile: true
       - name: 🕵️ Analyze project source
         run: melos run pana
@@ -160,6 +167,7 @@ jobs:
       - name: 📦 Install dependencies
         uses: bluefireteam/melos-action@b7f0b37c25d61616d8eda5d1b0fcf4b17e4e3b09 # v3
         with:
+          melos-version: 7.0.0-dev.7
           enforce-lockfile: true
           publish-dry-run: true
 
