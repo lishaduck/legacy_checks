@@ -43,6 +43,6 @@ jobs:
       - name: 📦 Install dependencies
         uses: bluefireteam/melos-action@b7f0b37c25d61616d8eda5d1b0fcf4b17e4e3b09 # v3
         with:
-          melos-version: 7.0.0-dev.7
+          melos-version: 7.0.0-dev.8
           enforce-lockfile: true
           publish: true

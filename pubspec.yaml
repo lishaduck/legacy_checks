@@ -16,7 +16,7 @@ dependency_overrides:
   pana: 0.22.18
 
 dev_dependencies:
-  melos: ^7.0.0-dev.7
+  melos: ^7.0.0-dev.8
 
 melos:
   command:
