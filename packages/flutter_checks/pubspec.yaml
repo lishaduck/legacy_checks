@@ -1,6 +1,6 @@
 name: flutter_checks
 description: "Add typesafe support for legacy matchers from `package:flutter_test` to `package:checks` expectations."
-version: 0.1.1
+version: 0.1.2
 homepage: https://github.com/lishaduck/legacy_checks
 documentation: https://github.com/lishaduck/legacy_checks
 issue_tracker: https://github.com/lishaduck/legacy_checks/issues
@@ -20,7 +20,7 @@ dependencies:
     sdk: flutter
   flutter_test:
     sdk: flutter
-  legacy_checks: ^0.1.0
+  legacy_checks: ^0.1.1
   matcher: ^0.12.16+1
   vector_math: ^2.1.4
 
