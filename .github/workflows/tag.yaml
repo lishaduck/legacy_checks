@@ -35,7 +35,7 @@ jobs:
         with:
           submodules: recursive
           clean: true
-          persist-credentials: false
+          persist-credentials: true
           set-safe-directory: true
       - name: 🐦 Set up Flutter
         id: flutter
@@ -57,4 +57,4 @@ jobs:
           gh workflow run publish.yml \
           --ref '$MELOS_PACKAGE_NAME-v$MELOS_PACKAGE_VERSION'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
