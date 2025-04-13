@@ -4,11 +4,6 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.1.1 - 2025-04-11
-
-- **DOCS**: update license ([85537c3b](https://github.com/lishaduck/legacy_checks/commit/85537c3bf642827589b2d9dd1673da57935fc571)).
-- **DOCS**: update to sound less hostile. ([27700f38](https://github.com/lishaduck/legacy_checks/commit/27700f389e11708556273da3b2497cd518b90a52))
-
 ## 0.1.0 - 2024-09-04
 
 > Note: This release has breaking changes.
