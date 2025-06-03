@@ -46,7 +46,7 @@ jobs:
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
       - name: 📦 Install dependencies
-        uses: bluefireteam/melos-action@b3ccbb59dd75a6c926d54684abd8c5cda074457a # v3
+        uses: bluefireteam/melos-action@b3ccbb59dd75a6c926d54684abd8c5cda074457a # v3.3.0
         with:
           melos-version: 7.0.0-dev.8
           enforce-lockfile: true
