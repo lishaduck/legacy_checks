@@ -3,7 +3,16 @@
 /// @docImport 'package:flutter_test/flutter_test.dart';
 library;
 
-import 'dart:ui' show Color, Image, Offset, Path, Rect, Size, TextDirection;
+import 'dart:ui'
+    show
+        Color,
+        Image,
+        Offset,
+        Path,
+        Rect,
+        SemanticsInputType,
+        Size,
+        TextDirection;
 
 import 'package:checks/checks.dart';
 import 'package:flutter/foundation.dart'
@@ -14,7 +23,7 @@ import 'package:flutter/foundation.dart'
         shortHash;
 import 'package:flutter/material.dart' show Card;
 import 'package:flutter/painting.dart'
-    show BorderRadius, BoxShape, ColorSwatch, ShapeBorder;
+    show BorderRadius, BoxShape, ColorSwatch, ShapeBorder, TextScaler;
 import 'package:flutter/rendering.dart'
     show
         RenderClipOval,
@@ -25,9 +34,14 @@ import 'package:flutter/rendering.dart'
         RenderPhysicalShape,
         ShapeBorderClipper;
 import 'package:flutter/semantics.dart'
-    show AttributedString, CustomSemanticsAction, SemanticsNode;
+    show
+        AttributedString,
+        CustomSemanticsAction,
+        SemanticsNode,
+        SemanticsValidationResult;
 import 'package:flutter/services.dart' show MethodCall;
-import 'package:flutter/widgets.dart' show Offstage, RepaintBoundary;
+import 'package:flutter/widgets.dart'
+    show MediaQuery, Offstage, RepaintBoundary;
 import 'package:flutter_test/flutter_test.dart'
     as flutter_matcher
     show
@@ -54,6 +68,7 @@ import 'package:flutter_test/flutter_test.dart'
         isOnstage,
         isSameColorAs,
         isSameColorSwatchAs,
+        isSystemTextScaler,
         matchesReferenceImage,
         matchesSemantics,
         matrix3MoreOrLessEquals,
@@ -85,7 +100,6 @@ import 'package:matcher/expect.dart' as matcher show Matcher, closeTo;
 import 'package:vector_math/vector_math_64.dart' show Matrix3, Matrix4;
 
 /// Enable accessibility checks.
-///
 ///
 /// {@template pub.flutter_checks.legacy_matcher_disclosure}
 /// Under the hood, this extension uses the [LegacyMatcher] extension to support legacy matchers.
@@ -574,6 +588,29 @@ extension ColorSwatchChecks<T> on Subject<ColorSwatch<T>> {
   }
 }
 
+/// Enable [TextScaler] checks.
+///
+/// {@macro pub.flutter_checks.legacy_matcher_disclosure}
+extension TextScalerChecks on Subject<TextScaler> {
+  /// Asserts that the object is a [TextScaler] that reflects the user's font
+  /// scale preferences from the platform's accessibility settings.
+  ///
+  /// This matcher is useful for verifying the text scaling within a widget subtree
+  /// respects the user accessibility preferences, and not accidentally being
+  /// shadowed by a [MediaQuery] with a different type of [TextScaler].
+  ///
+  /// In widget tests, the value of the system font scale preference can be
+  /// changed via [TestPlatformDispatcher.textScaleFactorTestValue].
+  ///
+  /// If `withScaleFactor` is specified and non-null, this matcher also asserts
+  /// that the [TextScaler]'s' `textScaleFactor` equals `withScaleFactor`.
+  void isSystemTextScaler({double? withScaleFactor}) {
+    legacyMatcher(
+      flutter_matcher.isSystemTextScaler(withScaleFactor: withScaleFactor),
+    );
+  }
+}
+
 /// Enable [Object] checks.
 ///
 /// {@macro pub.flutter_checks.legacy_matcher_disclosure}
@@ -1028,7 +1065,7 @@ extension SemanticsNodeChecks on Subject<SemanticsNode> {
   /// cases that [flutter_test.SemanticsController.find] sometimes runs into.
   ///
   /// To retrieve the semantics data of a widget, use [flutter_test.SemanticsController.find]
-  /// with a [flutter_test.Finder] that returns a single widget. Semantics must be enabled
+  /// with a [flutter_test.FinderBase] that returns a single widget. Semantics must be enabled
   /// in order to use this method.
   ///
   /// ## Sample code
@@ -1063,16 +1100,18 @@ extension SemanticsNodeChecks on Subject<SemanticsNode> {
     TextDirection? textDirection,
     Rect? rect,
     Size? size,
-    double? elevation,
-    double? thickness,
     int? platformViewId,
     int? maxValueLength,
     int? currentValueLength,
+    SemanticsValidationResult validationResult =
+        // TODO(lishaduck): nullable instead once 3.37 is stable.
+        SemanticsValidationResult.none,
     // Flags //
     bool hasCheckedState = false,
     bool isChecked = false,
     bool isCheckStateMixed = false,
     bool isSelected = false,
+    bool hasSelectedState = false,
     bool isButton = false,
     bool isSlider = false,
     bool isKeyboardKey = false,
@@ -1097,6 +1136,8 @@ extension SemanticsNodeChecks on Subject<SemanticsNode> {
     bool hasImplicitScrolling = false,
     bool hasExpandedState = false,
     bool isExpanded = false,
+    bool hasRequiredState = false,
+    bool isRequired = false,
     // Actions //
     bool hasTapAction = false,
     bool hasFocusAction = false,
@@ -1143,17 +1184,17 @@ extension SemanticsNodeChecks on Subject<SemanticsNode> {
         textDirection: textDirection,
         rect: rect,
         size: size,
-        elevation: elevation,
-        thickness: thickness,
         platformViewId: platformViewId,
         customActions: customActions,
         maxValueLength: maxValueLength,
         currentValueLength: currentValueLength,
+        validationResult: validationResult,
         // Flags
         hasCheckedState: hasCheckedState,
         isChecked: isChecked,
         isCheckStateMixed: isCheckStateMixed,
         isSelected: isSelected,
+        hasSelectedState: hasSelectedState,
         isButton: isButton,
         isSlider: isSlider,
         isKeyboardKey: isKeyboardKey,
@@ -1178,6 +1219,8 @@ extension SemanticsNodeChecks on Subject<SemanticsNode> {
         hasImplicitScrolling: hasImplicitScrolling,
         hasExpandedState: hasExpandedState,
         isExpanded: isExpanded,
+        hasRequiredState: hasRequiredState,
+        isRequired: isRequired,
         // Actions
         hasTapAction: hasTapAction,
         hasFocusAction: hasFocusAction,
@@ -1221,7 +1264,7 @@ extension SemanticsNodeChecks on Subject<SemanticsNode> {
   /// cases that [flutter_test.SemanticsController.find] sometimes runs into.
   ///
   /// To retrieve the semantics data of a widget, use [flutter_test.SemanticsController.find]
-  /// with a [flutter_test.Finder] that returns a single widget. Semantics must be enabled
+  /// with a [flutter_test.FinderBase] that returns a single widget. Semantics must be enabled
   /// in order to use this method.
   ///
   /// ## Sample code
@@ -1256,16 +1299,19 @@ extension SemanticsNodeChecks on Subject<SemanticsNode> {
     TextDirection? textDirection,
     Rect? rect,
     Size? size,
-    double? elevation,
-    double? thickness,
     int? platformViewId,
     int? maxValueLength,
     int? currentValueLength,
+    SemanticsValidationResult validationResult =
+        // TODO(lishaduck): nullable instead once 3.37 is stable
+        SemanticsValidationResult.none,
+    SemanticsInputType? inputType,
     // Flags
     bool? hasCheckedState,
     bool? isChecked,
     bool? isCheckStateMixed,
     bool? isSelected,
+    bool? hasSelectedState,
     bool? isButton,
     bool? isSlider,
     bool? isKeyboardKey,
@@ -1290,6 +1336,8 @@ extension SemanticsNodeChecks on Subject<SemanticsNode> {
     bool? hasImplicitScrolling,
     bool? hasExpandedState,
     bool? isExpanded,
+    bool hasRequiredState = false,
+    bool isRequired = false,
     // Actions
     bool? hasTapAction,
     bool? hasFocusAction,
@@ -1336,17 +1384,18 @@ extension SemanticsNodeChecks on Subject<SemanticsNode> {
         textDirection: textDirection,
         rect: rect,
         size: size,
-        elevation: elevation,
-        thickness: thickness,
         platformViewId: platformViewId,
         customActions: customActions,
         maxValueLength: maxValueLength,
         currentValueLength: currentValueLength,
+        validationResult: validationResult,
+        inputType: inputType,
         // Flags
         hasCheckedState: hasCheckedState,
         isChecked: isChecked,
         isCheckStateMixed: isCheckStateMixed,
         isSelected: isSelected,
+        hasSelectedState: hasSelectedState,
         isButton: isButton,
         isSlider: isSlider,
         isKeyboardKey: isKeyboardKey,
@@ -1371,6 +1420,8 @@ extension SemanticsNodeChecks on Subject<SemanticsNode> {
         hasImplicitScrolling: hasImplicitScrolling,
         hasExpandedState: hasExpandedState,
         isExpanded: isExpanded,
+        hasRequiredState: hasRequiredState,
+        isRequired: isRequired,
         // Actions
         hasTapAction: hasTapAction,
         hasFocusAction: hasFocusAction,

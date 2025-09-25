@@ -4,16 +4,13 @@ repository: https://github.com/lishaduck/legacy_checks
 publish_to: none
 
 environment:
-  sdk: ">=3.7.0 <4.0.0"
-  flutter: "3.29.2"
+  sdk: ">=3.9.0 <4.0.0"
+  flutter: "3.35.4"
 
 workspace:
   - packages/_analysis_options
   - packages/flutter_checks
   - packages/legacy_checks
-
-dependency_overrides:
-  pana: 0.22.18
 
 dev_dependencies:
   melos: ^7.0.0-dev.8
