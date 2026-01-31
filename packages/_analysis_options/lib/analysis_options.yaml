@@ -11,9 +11,10 @@ include: package:very_good_analysis/analysis_options.yaml
 
 analyzer:
   errors:
+    invalid_annotation_target: ignore
     unused_element_parameter: ignore
+
   exclude:
-    - "test/.test_coverage.dart"
     - "build/**"
 
 linter:
@@ -40,33 +41,23 @@ linter:
     avoid_classes_with_only_static_members: true
     avoid_implementing_value_types: true
     avoid_types_on_closure_parameters: true
-    deprecated_member_use_from_same_package: true
-    diagnostic_describe_all_properties: true
-    no_literal_bool_comparisons: true
-    prefer_foreach: true
     prefer_mixin: true
-    unnecessary_null_aware_operator_on_extension_on_nullable: true
-    unreachable_from_main: true
-
-    # Temporary suppression of rules in VGA
-    public_member_api_docs: false
 
     # Rules with false-positives, not in VGA
-    discarded_futures: true
     close_sinks: true
 
     # Experimental rules, not yet in VGA
     annotate_redeclares: true
+    omit_obvious_property_types: true
+    specify_nonobvious_property_types: true
     unnecessary_async: true
     unsafe_variance: true
 
     # New/updated rules, not yet in VGA
-    use_truncating_division: true
     avoid_futureor_void: true
-    strict_top_level_inference: true
-    unnecessary_underscores: true
 
     # Newly (or soon-to-be) deprecated rules, still in VGA
     unnecessary_await_in_return: false
+
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
