@@ -15,7 +15,7 @@ topics:
 
 dependencies:
   checks: ^0.3.0
-  matcher: ^0.12.16+1
+  matcher: ^0.12.20
 
 dev_dependencies:
   _analysis_options: ^0.0.0
