@@ -22,7 +22,7 @@ dependencies:
     sdk: flutter
   legacy_checks: ^0.1.1
   matcher: ^0.12.16+1
-  vector_math: ^2.1.4
+  vector_math: ^2.4.2
 
 dev_dependencies:
   _analysis_options: ^0.0.0
