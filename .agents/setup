@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+SECONDS=0
+
+echo '==> Checking system prerequisites'
+missing=()
+for package in curl git unzip xz-utils zip libglu1-mesa; do
+  if ! dpkg-query -W -f='${Status}' "$package" 2>/dev/null | grep -qx 'install ok installed'; then
+    missing+=("$package")
+  fi
+done
+if ((${#missing[@]})); then
+  sudo apt-get update -qq
+  sudo apt-get install -y --no-install-recommends "${missing[@]}"
+fi
+echo "==> System prerequisites ready (${SECONDS}s)"
+
+# Use the same Flutter pin as CI, including its bundled Dart SDK.
+flutter_version="$(sed -n 's/^  flutter: "\([^"]*\)"$/\1/p' pubspec.yaml)"
+test -n "$flutter_version"
+flutter_root="$HOME/.local/share/legacy_checks/flutter"
+if [[ ! -d "$flutter_root/.git" ]]; then
+  mkdir -p "$(dirname "$flutter_root")"
+  git clone --depth 1 --branch "$flutter_version" https://github.com/flutter/flutter.git "$flutter_root"
+elif ! git -C "$flutter_root" tag --points-at HEAD | grep -Fxq "$flutter_version"; then
+  git -C "$flutter_root" fetch --depth 1 origin "refs/tags/$flutter_version:refs/tags/$flutter_version"
+  git -C "$flutter_root" checkout --detach "$flutter_version"
+fi
+
+# Login shells used by Amp and supervised services need the same tools.
+profile_marker='# legacy_checks Flutter and Pub tools'
+if ! grep -Fxq "$profile_marker" "$HOME/.bash_profile" 2>/dev/null; then
+  cat >> "$HOME/.bash_profile" <<'EOF'
+
+# legacy_checks Flutter and Pub tools
+export PATH="$HOME/.local/share/legacy_checks/flutter/bin:$HOME/.pub-cache/bin:$PATH"
+EOF
+fi
+export PATH="$flutter_root/bin:$HOME/.pub-cache/bin:$PATH"
+flutter config --no-analytics
+dart --disable-analytics
+# Only cache the engine used for Linux-hosted tests, not mobile or web SDKs.
+flutter precache --linux --no-android --no-ios --no-web --no-macos --no-windows --no-fuchsia
+echo "==> Flutter ready (${SECONDS}s)"
+
+echo '==> Installing locked workspace dependencies'
+flutter pub get --enforce-lockfile
+melos_version="$(sed -n '/^  melos:/,/^  [^ ]/{s/^    version: "\([^"]*\)"$/\1/p;}' pubspec.lock)"
+test -n "$melos_version"
+dart pub global activate melos "$melos_version"
+echo "==> Setup complete (${SECONDS}s)"

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Flutter and Pub caches are snapshot contents; no services or authentication are required.
+echo 'Flutter and workspace dependencies are available from the orb snapshot.'
