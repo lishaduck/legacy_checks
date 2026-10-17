@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+SECONDS=0
+
+echo '==> Preparing Flutter toolchain'
+if ! dpkg -s zip libglu1-mesa >/dev/null 2>&1; then
+  sudo apt-get update -qq
+  sudo apt-get install -y --no-install-recommends zip libglu1-mesa
+fi
+[[ -x "$HOME/.local/bin/mise" ]] || curl -fsSL https://mise.run | sh
+eval "$("$HOME/.local/bin/mise" activate --shims bash)"
+mise use --global "flutter@$(sed -n 's/^  flutter: "\([^"]*\)"$/\1/p' pubspec.yaml)"
+profile='eval "$("$HOME/.local/bin/mise" activate --shims bash)"; export PATH="$HOME/.pub-cache/bin:$PATH"'
+grep -Fxq "$profile" "$HOME/.bash_profile" 2>/dev/null || printf '\n%s\n' "$profile" >> "$HOME/.bash_profile"
+export PATH="$HOME/.pub-cache/bin:$PATH"
+flutter config --no-analytics
+dart --disable-analytics
+flutter precache --linux --no-android --no-ios --no-web --no-macos --no-windows --no-fuchsia
+echo "==> Flutter ready (${SECONDS}s)"
+
+echo '==> Installing locked workspace dependencies'
+flutter pub get --enforce-lockfile
+dart pub global activate melos "$(sed -n '/^  melos:/,/^  [^ ]/{s/^    version: "\([^"]*\)"$/\1/p;}' pubspec.lock)"
+echo "==> Setup complete (${SECONDS}s)"

@@ -1,6 +1,9 @@
 # Testing
 /packages/*/test/.test_optimizer.dart
 
+# Orb portal metadata
+.amp/portals/*
+
 # Miscellaneous
 *.class
 *.log
