@@ -32,7 +32,6 @@ linter:
     prefer_relative_imports: true
     always_use_package_imports: false
     lines_longer_than_80_chars: false
-    one_member_abstracts: false
     omit_obvious_local_variable_types: true
     omit_local_variable_types: false
 
@@ -66,7 +65,5 @@ linter:
     strict_top_level_inference: true
     unnecessary_underscores: true
 
-    # Newly (or soon-to-be) deprecated rules, still in VGA
-    unnecessary_await_in_return: false
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
