@@ -20,4 +20,4 @@ dependencies:
 dev_dependencies:
   _analysis_options: ^0.0.0
   test: ^1.25.8
-  very_good_cli: ^0.25.0
+  very_good_cli: ^0.27.0
