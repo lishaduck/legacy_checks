@@ -35,7 +35,6 @@ import 'package:flutter_test/flutter_test.dart'
         LocalFileComparator,
         MatchesGoldenFile,
         clipsWithBoundingRect,
-        containsSemantics,
         coversSameAreaAs,
         doesNotMeetGuideline,
         equalsIgnoringHashCodes,
@@ -54,6 +53,7 @@ import 'package:flutter_test/flutter_test.dart'
         isOnstage,
         isSameColorAs,
         isSameColorSwatchAs,
+        isSemantics,
         matchesReferenceImage,
         matchesSemantics,
         matrix3MoreOrLessEquals,
@@ -1239,7 +1239,7 @@ extension SemanticsNodeChecks on Subject<SemanticsNode> {
   ///
   ///  - [flutter_test.SemanticsController.find] under [WidgetTester.semantics], the tester method which retrieves semantics.
   ///  - [matchesSemantics], a similar matcher with default values for flags and actions.
-  ///  - [flutter_matcher.containsSemantics], the backing matcher.
+  ///  - [flutter_matcher.isSemantics], the backing matcher.
   void containsSemantics({
     String? identifier,
     String? label,
@@ -1320,7 +1320,7 @@ extension SemanticsNodeChecks on Subject<SemanticsNode> {
     List<matcher.Matcher>? children,
   }) {
     legacyMatcher(
-      flutter_matcher.containsSemantics(
+      flutter_matcher.isSemantics(
         identifier: identifier,
         label: label,
         attributedLabel: attributedLabel,

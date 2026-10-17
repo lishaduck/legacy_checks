@@ -49,7 +49,7 @@ jobs:
       - name: 📦 Install dependencies
         uses: bluefireteam/melos-action@2982f8e4fc92440a219490009d6d05195cb1a6a5 # v3.8.0
         with:
-          melos-version: 7.0.0-dev.8
+          melos-version: 7.8.2
           dart-version: none
           enforce-lockfile: true
       - name: 🕵️ Analyze project source
@@ -79,11 +79,11 @@ jobs:
       - name: 📦 Install dependencies
         uses: bluefireteam/melos-action@2982f8e4fc92440a219490009d6d05195cb1a6a5 # v3.8.0
         with:
-          melos-version: 7.0.0-dev.8
+          melos-version: 7.8.2
           dart-version: none
           enforce-lockfile: true
       - name: 🧪 Run tests
-        run: melos run test
+        run: melos run --no-select test
       - name: 📊 Upload code coverage
         uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
         with:
@@ -140,11 +140,11 @@ jobs:
       - name: 📦 Install dependencies
         uses: bluefireteam/melos-action@2982f8e4fc92440a219490009d6d05195cb1a6a5 # v3.8.0
         with:
-          melos-version: 7.0.0-dev.8
+          melos-version: 7.8.2
           dart-version: none
           enforce-lockfile: true
       - name: 🕵️ Analyze project source
-        run: melos run pana
+        run: melos run --no-select pana
 
   dry-publish:
     name: Dry-run publish
@@ -170,7 +170,7 @@ jobs:
       - name: 📦 Install dependencies
         uses: bluefireteam/melos-action@2982f8e4fc92440a219490009d6d05195cb1a6a5 # v3.8.0
         with:
-          melos-version: 7.0.0-dev.8
+          melos-version: 7.8.2
           dart-version: none
           enforce-lockfile: true
           publish-dry-run: true

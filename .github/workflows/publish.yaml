@@ -43,7 +43,7 @@ jobs:
       - name: 📦 Install dependencies
         uses: bluefireteam/melos-action@2982f8e4fc92440a219490009d6d05195cb1a6a5 # v3.8.0
         with:
-          melos-version: 7.0.0-dev.8
+          melos-version: 7.8.2
           dart-version: none
           enforce-lockfile: true
           publish: true

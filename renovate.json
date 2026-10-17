@@ -5,11 +5,25 @@
   "labels": ["dependencies"],
   "rangeStrategy": "bump",
   "prHourlyLimit": 0,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.github/workflows/[^/]+\\.ya?ml$/"],
+      "matchStrings": ["melos-version:[ \\t]+(?<currentValue>[^\\s]+)"],
+      "depNameTemplate": "melos",
+      "datasourceTemplate": "dart"
+    }
+  ],
   "packageRules": [
     {
       "groupName": "github-actions",
       "matchManagers": ["github-actions"],
       "matchPackageNames": ["actions/**"]
+    },
+    {
+      "groupName": "melos",
+      "matchDatasources": ["dart"],
+      "matchPackageNames": ["melos"]
     }
   ]
 }
