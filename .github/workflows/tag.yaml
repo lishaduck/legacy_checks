@@ -46,7 +46,7 @@ jobs:
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
       - name: 📦 Install dependencies
-        uses: bluefireteam/melos-action@2982f8e4fc92440a219490009d6d05195cb1a6a5 # v3.8.0
+        uses: bluefireteam/melos-action@b79b63bcd183f823740a7976cbdb4b0fc95a0eb8 # v3.10.0
         with:
           melos-version: 7.8.2
           dart-version: none
