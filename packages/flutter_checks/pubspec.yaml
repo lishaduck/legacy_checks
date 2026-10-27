@@ -15,7 +15,7 @@ topics:
   - "testing"
 
 dependencies:
-  checks: ^0.3.0
+  checks: ^0.3.2
   flutter:
     sdk: flutter
   flutter_test:
