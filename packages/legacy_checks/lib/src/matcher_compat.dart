@@ -1,6 +1,8 @@
 /// Implement [expect] and [expectLater] from `package:matcher` in `package:checks`.
 library;
 
+import 'dart:convert';
+
 import 'package:checks/context.dart';
 import 'package:matcher/expect.dart'
         // Only used in the docs.
@@ -20,31 +22,46 @@ extension LegacyMatcher<T> on Subject<T> {
   /// Note that many [AsyncMatcher]s are exposed as [Matcher]s instead, because [AsyncMatcher] is not exposed by `package:matcher`.
   /// In that case, cast the [Matcher] to [AsyncMatcher] and call [legacyMatcherAsync] instead.
   ///
+  /// Throws [ArgumentError] for an [AsyncMatcher]. Its result must be awaited
+  /// through [legacyMatcherAsync], not checked synchronously.
+  ///
   /// See also:
   ///
   /// * [legacyMatcherAsync] for asynchronous matchers.
   void legacyMatcher(Matcher matcher) {
-    context.expect(() => [], (value) {
-      final matchState = <Object?, Object?>{};
-      if (!matcher.matches(value, matchState)) {
-        final description = matcher.describe(StringDescription());
-        final mismatchDescription = matcher.describeMismatch(
-          value,
-          StringDescription(),
-          matchState,
-          false,
-        );
+    if (matcher is AsyncMatcher) {
+      throw ArgumentError.value(
+        matcher,
+        'matcher',
+        'Use legacyMatcherAsync for an AsyncMatcher.',
+      );
+    }
+    context.expect(
+      () =>
+          LineSplitter.split(matcher.describe(StringDescription()).toString()),
+      (value) {
+        final matchState = <Object?, Object?>{};
+        if (!matcher.matches(value, matchState)) {
+          final mismatchDescription = matcher.describeMismatch(
+            value,
+            StringDescription(),
+            matchState,
+            false,
+          );
 
-        return Rejection(
-          which: [description.toString()],
-          actual: [mismatchDescription.toString()],
-        );
-      }
-      return null;
-    });
+          return Rejection(
+            which: LineSplitter.split(mismatchDescription.toString()),
+          );
+        }
+        return null;
+      },
+    );
   }
 
   /// Support legacy [AsyncMatcher]s in `package:checks` expectations.
+  ///
+  /// A `null` result succeeds and a [String] result fails, even if empty.
+  /// Both immediate results and results returned through a [Future] are supported.
   ///
   /// Note that many [AsyncMatcher]s are exposed as [Matcher]s instead, because [AsyncMatcher] is not exposed by `package:matcher`.
   /// In that case, cast the [Matcher] to [AsyncMatcher] before calling this method rather than using [legacyMatcher].
@@ -61,31 +78,24 @@ extension LegacyMatcher<T> on Subject<T> {
   ///
   /// * [legacyMatcher] for synchronous matchers.
   Future<void> legacyMatcherAsync(AsyncMatcher matcher) async {
-    await context.expectAsync(() => [], (actual) async {
-      final Object? match = await matcher.matchAsync(actual);
+    await context.expectAsync(
+      () =>
+          LineSplitter.split(matcher.describe(StringDescription()).toString()),
+      (actual) async {
+        final Object? match = await matcher.matchAsync(actual);
 
-      switch (match) {
-        case String _:
-          // This is a synchronous rejection from an asynchronous matcher.
-          // Icky, but `package:matcher` supports it, so we must as well.
-          return Rejection(which: [match]);
-        case Future<String?> _:
-          // This is the result of an asynchronous matcher.
-          final String? realResult = await match;
-          // If the result is `null`, the matcher is considered to have passed.
-          if (realResult == null) return null;
-          // Otherwise, the matcher is considered to have failed.
-          return Rejection(which: [realResult]);
-        case null:
-          // This is a synchronous success from an asynchronous matcher.
-          // It's also icky, but `package:matcher` supports it as well.
-          return null;
-        default:
-          // This should never happen.
-          throw AssertionError(
-            'matchAsync() may only return a String, a Future, or null.',
-          );
-      }
-    });
+        switch (match) {
+          case String _:
+            return Rejection(which: LineSplitter.split(match));
+          case null:
+            return null;
+          default:
+            // This should never happen.
+            throw AssertionError(
+              'matchAsync() may only return a String, a Future, or null.',
+            );
+        }
+      },
+    );
   }
 }

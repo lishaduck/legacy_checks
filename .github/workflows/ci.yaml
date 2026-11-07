@@ -47,7 +47,7 @@ jobs:
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
       - name: 📦 Install dependencies
-        uses: bluefireteam/melos-action@2982f8e4fc92440a219490009d6d05195cb1a6a5 # v3.8.0
+        uses: bluefireteam/melos-action@b79b63bcd183f823740a7976cbdb4b0fc95a0eb8 # v3.10.0
         with:
           melos-version: 7.8.2
           dart-version: none
@@ -77,7 +77,7 @@ jobs:
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
       - name: 📦 Install dependencies
-        uses: bluefireteam/melos-action@2982f8e4fc92440a219490009d6d05195cb1a6a5 # v3.8.0
+        uses: bluefireteam/melos-action@b79b63bcd183f823740a7976cbdb4b0fc95a0eb8 # v3.10.0
         with:
           melos-version: 7.8.2
           dart-version: none
@@ -85,7 +85,7 @@ jobs:
       - name: 🧪 Run tests
         run: melos run --no-select test
       - name: 📊 Upload code coverage
-        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: packages/*/coverage/lcov.info
@@ -138,7 +138,7 @@ jobs:
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
       - name: 📦 Install dependencies
-        uses: bluefireteam/melos-action@2982f8e4fc92440a219490009d6d05195cb1a6a5 # v3.8.0
+        uses: bluefireteam/melos-action@b79b63bcd183f823740a7976cbdb4b0fc95a0eb8 # v3.10.0
         with:
           melos-version: 7.8.2
           dart-version: none
@@ -168,7 +168,7 @@ jobs:
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
       - name: 📦 Install dependencies
-        uses: bluefireteam/melos-action@2982f8e4fc92440a219490009d6d05195cb1a6a5 # v3.8.0
+        uses: bluefireteam/melos-action@b79b63bcd183f823740a7976cbdb4b0fc95a0eb8 # v3.10.0
         with:
           melos-version: 7.8.2
           dart-version: none
@@ -257,6 +257,6 @@ jobs:
           persist-credentials: false
           set-safe-directory: true
       - name: 🌈 Run zizmor
-        uses: zizmorcore/zizmor-action@3dc1ecc9bcb9e94e9b2c709687979e1298497054 # v0.6.2
+        uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
