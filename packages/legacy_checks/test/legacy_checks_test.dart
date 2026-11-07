@@ -15,12 +15,11 @@ void main() {
     const legacy = _Equals42();
     final failure = softCheck<int>(41, (s) => s.legacyMatcher(legacy))!;
     check(failure.rejection.actual).deepEquals(['<41>']);
-    check(
-      failure.rejection.which,
-    ).isNotNull().deepEquals(['differs by 1', 'outside tolerance']);
-    check(
-      describe<int>((s) => s.legacyMatcher(legacy)),
-    ).deepEquals(['  equals 42', '  with no tolerance']);
+    check(failure.rejection.which)
+        .isNotNull()
+        .deepEquals(['differs by 1', 'outside tolerance']);
+    check(describe<int>((s) => s.legacyMatcher(legacy)))
+        .deepEquals(['  equals 42', '  with no tolerance']);
 
     check(41).not((s) => s.legacyMatcher(legacy));
     final negated = softCheck<int>(
@@ -37,9 +36,8 @@ void main() {
   });
 
   test('legacyMatcherAsync', () async {
-    await check(
-      Future.value(42),
-    ).legacyMatcherAsync(matcher.completion(42) as AsyncMatcher);
+    await check(Future.value(42))
+        .legacyMatcherAsync(matcher.completion(42) as AsyncMatcher);
   });
 
   test('legacyMatcherAsync handles immediate and future results', () async {
@@ -65,13 +63,11 @@ void main() {
           } else {
             which.deepEquals(['wrong value', 'try again', 'last line']);
           }
-          await check(
-            check(41).legacyMatcherAsync(legacy),
-          ).throws<TestFailure>();
+          await check(check(41).legacyMatcherAsync(legacy))
+              .throws<TestFailure>();
         }
-        check(
-          await describeAsync<int>((s) => s.legacyMatcherAsync(legacy)),
-        ).deepEquals(['  an accepted value', '  after matching']);
+        check(await describeAsync<int>((s) => s.legacyMatcherAsync(legacy)))
+            .deepEquals(['  an accepted value', '  after matching']);
       }
     }
   });
