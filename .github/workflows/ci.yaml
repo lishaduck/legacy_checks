@@ -113,6 +113,8 @@ jobs:
           cache: true
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
+      - name: 📦 Install dependencies
+        run: flutter pub get --enforce-lockfile
       - name: ✨ Verify formatting
         run: dart format . --output=none --set-exit-if-changed
 
