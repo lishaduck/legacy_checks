@@ -13,7 +13,7 @@ workspace:
   - packages/legacy_checks
 
 dev_dependencies:
-  melos: 7.8.2
+  melos: 8.10.1
 
 melos:
   command:
