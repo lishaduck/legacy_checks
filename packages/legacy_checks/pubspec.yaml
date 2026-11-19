@@ -14,7 +14,7 @@ topics:
   - "testing"
 
 dependencies:
-  checks: ^0.3.2
+  checks: ^0.4.0
   matcher: ^0.12.20
 
 dev_dependencies:
